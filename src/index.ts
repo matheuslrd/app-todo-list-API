@@ -4,10 +4,15 @@ const app = express();
 
 app.use(express.json());
 
-const PORT = 3000;
-
-app.get('/', (_req: Request, res: Response) => {
-  res.send('Hello World!');
+app.get('/', async (_req: Request, res: Response) => {
+  try {
+    res.status(200).send('Hello World!');
+  } catch (error) {
+    res.status(500).send('Vish!! Deu ruim');
+  }
 });
 
-app.listen(PORT, () => console.log(`Ouvindo na porta ${PORT}!`));
+const PORT = 3000;
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, () => console.log(`Ouvindo na porta ${PORT}!`));
